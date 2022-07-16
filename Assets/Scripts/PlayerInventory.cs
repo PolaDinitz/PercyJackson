@@ -16,6 +16,7 @@ public class PlayerInventory : MonoBehaviour
 
     public UnityEvent<PlayerInventory> OnCoinCollected;
     public UnityEvent<PlayerInventory> OnHealthPotionCollected;
+    public UnityEvent<PlayerInventory> OnDamageTaken;
 
     public void CoinCollected()
     {
@@ -27,5 +28,11 @@ public class PlayerInventory : MonoBehaviour
     {
         currentHealth += 10;
         OnHealthPotionCollected.Invoke(this);
+    }
+
+    public void DamageTaken(int damage)
+    {
+        currentHealth -= damage;
+        OnDamageTaken.Invoke(this);
     }
 }

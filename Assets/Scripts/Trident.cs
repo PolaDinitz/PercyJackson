@@ -8,9 +8,15 @@ public class Trident : MonoBehaviour
 
     private void OnTriggerEnter(Collider other)
     {
-        if(other.gameObject.CompareTag("Player"))
+        PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
+
+        if (other.gameObject.CompareTag("Player") && playerInventory.CoinsAmount < 10)
         {
             lvlLoader.LoadNextLevel();
+        }
+        else if (playerInventory.CoinsAmount <= 10)
+        {
+            Debug.Log("You have to collect a least 10 coins");
         }
     }
 }

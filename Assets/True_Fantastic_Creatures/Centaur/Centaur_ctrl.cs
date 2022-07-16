@@ -135,7 +135,7 @@ public class Centaur_ctrl : MonoBehaviour {
 //-------------------------------------------------------------------TURNS
 
 		var vert_modul = Mathf.Abs(Input.GetAxis("Vertical"));
-		Debug.Log(vert_modul);
+		/*Debug.Log(vert_modul);*/
 		
 		if ((Input.GetAxis ("Horizontal") > 0.1f)&&(vert_modul > 0.3f)) 
 		{

@@ -8,6 +8,7 @@ public class HealthBarUI : MonoBehaviour
     public Slider slider;
     public Gradient gradient;
     public Image fill;
+    public LevelLoader lvlLoader;
 
     private void Awake()
     {
@@ -24,6 +25,11 @@ public class HealthBarUI : MonoBehaviour
 
     public void updateHealthBar(PlayerInventory playerInventory)
     {
+        if (playerInventory.currentHealth == 0)
+        {
+            lvlLoader.GameOver();
+        }
+
         slider.value = playerInventory.currentHealth;
         fill.color = gradient.Evaluate(slider.normalizedValue);
     }
