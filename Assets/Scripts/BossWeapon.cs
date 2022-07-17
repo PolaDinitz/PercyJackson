@@ -4,8 +4,8 @@ using UnityEngine;
 
 public class BossWeapon : MonoBehaviour
 {
-	public int attackDamage = 20;
-	public int enragedAttackDamage = 40;
+	public int attackDamage = 5;
+	public int enragedAttackDamage = 10;
 
 	public Vector3 attackOffset;
 	public float attackRange = 1f;

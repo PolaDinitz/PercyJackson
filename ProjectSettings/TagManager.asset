@@ -7,6 +7,7 @@ TagManager:
   - CinemachineTarget
   - Boss
   - WayPoint
+  - 2DPlayer
   layers:
   - Default
   - TransparentFX

@@ -154,6 +154,10 @@ PrefabInstance:
       propertyPath: m_Layer
       value: 6
       objectReference: {fileID: 0}
+    - target: {fileID: 6323719953710832613, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
+      propertyPath: m_TagString
+      value: 2DPlayer
+      objectReference: {fileID: 0}
     - target: {fileID: 7087049454815086010, guid: a4b4a6d32bcb19248a754d6602ffc7e4, type: 3}
       propertyPath: m_Layer
       value: 6
@@ -661,6 +665,21 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   player: {fileID: 1780384227}
   isFlipped: 0
+--- !u!114 &1000296942
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1000296940}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 77cacf9f16cdf4a43a68ddd718ea4bc9, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  health: 100
+  deathEffect: {fileID: 0}
+  isInvulnerable: 0
 --- !u!114 &1000296947
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -673,8 +692,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 732ff305cc848e9479211a69cc24075d, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  attackDamage: 20
-  enragedAttackDamage: 40
+  attackDamage: 5
+  enragedAttackDamage: 10
   attackOffset: {x: 0, y: 0, z: 0}
   attackRange: 1
   attackMask:
@@ -955,7 +974,7 @@ GameObject:
   - component: {fileID: 1387079165}
   - component: {fileID: 1387079164}
   m_Layer: 5
-  m_Name: HealthBar (1)
+  m_Name: PercyHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1026,6 +1045,7 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   fill: {fileID: 1117918461}
+  lvlLoader: {fileID: 0}
 --- !u!114 &1387079165
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1409,7 +1429,7 @@ GameObject:
   - component: {fileID: 3409243808489959053}
   - component: {fileID: 3530264237588249896}
   m_Layer: 5
-  m_Name: HealthBar
+  m_Name: BossHealthBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -1630,3 +1650,4 @@ MonoBehaviour:
     m_NumColorKeys: 3
     m_NumAlphaKeys: 2
   fill: {fileID: 3409243809109211338}
+  lvlLoader: {fileID: 0}

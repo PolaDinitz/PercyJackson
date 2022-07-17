@@ -6,7 +6,7 @@ public class Boss_Run : StateMachineBehaviour
 {
 
 	public float speed = 2.5f;
-	public float attackRange = 3f;
+	public float attackRange = 2f;
 
 	Transform player;
 	Rigidbody2D rb;
@@ -15,7 +15,7 @@ public class Boss_Run : StateMachineBehaviour
 	// OnStateEnter is called when a transition starts and the state machine starts to evaluate this state
 	override public void OnStateEnter(Animator animator, AnimatorStateInfo stateInfo, int layerIndex)
 	{
-		player = GameObject.FindGameObjectWithTag("Player").transform;
+		player = GameObject.FindGameObjectWithTag("2DPlayer").transform;
 		rb = animator.GetComponent<Rigidbody2D>();
 		boss = animator.GetComponent<Boss>();
 
