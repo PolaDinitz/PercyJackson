@@ -10,7 +10,7 @@ public class PlayerConversation : MonoBehaviour
     void Start()
     {
 
-        DialogueEditor.ConversationManager.Instance.StartConversation(npc);
+        /*DialogueEditor.ConversationManager.Instance.StartConversation(npc);*/
 
     }
 }

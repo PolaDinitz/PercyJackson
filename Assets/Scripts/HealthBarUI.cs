@@ -25,7 +25,7 @@ public class HealthBarUI : MonoBehaviour
 
     public void updateHealthBar(PlayerInventory playerInventory)
     {
-        if (playerInventory.currentHealth == 0)
+        if (playerInventory.currentHealth <= 0)
         {
             lvlLoader.GameOver();
         }
