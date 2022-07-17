@@ -10,7 +10,7 @@ public class Temple : MonoBehaviour
     {
         Inventory inventory = other.GetComponent<Inventory>();
 
-        if (other.gameObject.CompareTag("Player") && inventory.Amount() <=4)
+        if (other.gameObject.CompareTag("Player") && inventory.Amount() == 4)
         {
             lvlLoader.LoadNextLevel();
         }

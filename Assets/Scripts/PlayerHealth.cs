@@ -10,6 +10,8 @@ public class PlayerHealth : MonoBehaviour
 
 	public GameObject deathEffect;
 
+	public LevelLoader lvlLoader;
+
 	public void TakeDamage(int damage)
 	{
 		health -= damage;
@@ -24,7 +26,7 @@ public class PlayerHealth : MonoBehaviour
 
 	void Die()
 	{
-		SceneManager.LoadScene(SceneManager.GetActiveScene().buildIndex);
+		lvlLoader.GameOver();
 	}
 
 	IEnumerator DamageAnimation()

@@ -11,17 +11,14 @@ public class BossHealth : MonoBehaviour
 
 	public bool isInvulnerable = false;
 
+	public LevelLoader lvlLoader;
+
 	public void TakeDamage(int damage)
 	{
 		if (isInvulnerable)
 			return;
 
 		health -= damage;
-
-		if (health <= 200)
-		{
-			GetComponent<Animator>().SetBool("IsEnraged", true);
-		}
 
 		if (health <= 0)
 		{
@@ -32,7 +29,8 @@ public class BossHealth : MonoBehaviour
 	void Die()
 	{
 		Instantiate(deathEffect, transform.position, Quaternion.identity);
-		Destroy(gameObject);
+		lvlLoader.Win();
+		/*Destroy(gameObject);*/
 	}
 
 }

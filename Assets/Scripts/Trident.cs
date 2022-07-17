@@ -10,7 +10,7 @@ public class Trident : MonoBehaviour
     {
         PlayerInventory playerInventory = other.GetComponent<PlayerInventory>();
 
-        if (other.gameObject.CompareTag("Player") && playerInventory.CoinsAmount < 10)
+        if (other.gameObject.CompareTag("Player") && playerInventory.CoinsAmount >= 10)
         {
             lvlLoader.LoadNextLevel();
         }

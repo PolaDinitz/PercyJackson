@@ -19,12 +19,12 @@ public class HeroKnight : MonoBehaviour {
     private bool                m_isWallSliding = false;
     private bool                m_grounded = false;
     private bool                m_rolling = false;
-    private int                 m_facingDirection = 1;
     private int                 m_currentAttack = 0;
     private float               m_timeSinceAttack = 0.0f;
     private float               m_delayToIdle = 0.0f;
     private float               m_rollDuration = 8.0f / 14.0f;
     private float               m_rollCurrentTime;
+    private bool m_FacingRight = true;
 
 
     // Use this for initialization
@@ -70,17 +70,17 @@ public class HeroKnight : MonoBehaviour {
         // -- Handle input and movement --
         float inputX = Input.GetAxis("Horizontal");
 
-        // Swap direction of sprite depending on walk direction
-        if (inputX > 0)
+        // If the input is moving the player right and the player is facing left...
+        if (inputX > 0 && !m_FacingRight)
         {
-            GetComponent<SpriteRenderer>().flipX = false;
-            m_facingDirection = 1;
+            // ... flip the player.
+            Flip();
         }
-            
-        else if (inputX < 0)
+        // Otherwise if the input is moving the player left and the player is facing right...
+        else if (inputX < 0 && m_FacingRight)
         {
-            GetComponent<SpriteRenderer>().flipX = true;
-            m_facingDirection = -1;
+            // ... flip the player.
+            Flip();
         }
 
         // Move
@@ -101,13 +101,13 @@ public class HeroKnight : MonoBehaviour {
             m_animator.SetBool("noBlood", m_noBlood);
             m_animator.SetTrigger("Death");
         }
-            
+
         //Hurt
         else if (Input.GetKeyDown("q") && !m_rolling)
             m_animator.SetTrigger("Hurt");
 
         //Attack
-        else if(Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
+        else if (Input.GetMouseButtonDown(0) && m_timeSinceAttack > 0.25f && !m_rolling)
         {
             m_currentAttack++;
 
@@ -136,17 +136,9 @@ public class HeroKnight : MonoBehaviour {
         else if (Input.GetMouseButtonUp(1))
             m_animator.SetBool("IdleBlock", false);
 
-        // Roll
-        else if (Input.GetKeyDown("left shift") && !m_rolling && !m_isWallSliding)
-        {
-            m_rolling = true;
-            m_animator.SetTrigger("Roll");
-            m_body2d.velocity = new Vector2(m_facingDirection * m_rollForce, m_body2d.velocity.y);
-        }
-            
 
         //Jump
-        else if (Input.GetKeyDown("space") && m_grounded && !m_rolling)
+        else if (Input.GetKeyDown(KeyCode.UpArrow) && m_grounded && !m_rolling)
         {
             m_animator.SetTrigger("Jump");
             m_grounded = false;
@@ -173,23 +165,15 @@ public class HeroKnight : MonoBehaviour {
         }
     }
 
-    // Animation Events
-    // Called in slide animation.
-    void AE_SlideDust()
+    private void Flip()
     {
-        Vector3 spawnPosition;
+        // Switch the way the player is labelled as facing.
+        m_FacingRight = !m_FacingRight;
 
-        if (m_facingDirection == 1)
-            spawnPosition = m_wallSensorR2.transform.position;
-        else
-            spawnPosition = m_wallSensorL2.transform.position;
+        Vector3 flipped = transform.localScale;
+        flipped.z *= -1f;
+        transform.localScale = flipped;
 
-        if (m_slideDust != null)
-        {
-            // Set correct arrow spawn position
-            GameObject dust = Instantiate(m_slideDust, spawnPosition, gameObject.transform.localRotation) as GameObject;
-            // Turn arrow in correct direction
-            dust.transform.localScale = new Vector3(m_facingDirection, 1, 1);
-        }
+        transform.Rotate(0f, 180f, 0f);
     }
 }
